@@ -4,7 +4,7 @@ import { use } from "react";
 import FormSection from "../components_2/FormSection";
 import OutputSection from "../components_2/OutputSection";
 import { TEMPLATE } from "../../_components/TemplateListSection";
-import Templates from "@/app/dashboard/(data)/Templates";
+import Templates from "@/app/(data)/Templates";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
@@ -20,7 +20,7 @@ import { UserSubsContex } from "@/app/contex/UserSubsContex";
 
 
 // Define the context
-export const UserSubsContext = createContext({
+ const UserSubsContext = createContext({
   userSubscription: null, // Define the default value
   setUserSubscription: (value: any) => {},
 });

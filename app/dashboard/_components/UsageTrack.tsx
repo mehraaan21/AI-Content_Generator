@@ -39,14 +39,15 @@ useEffect(() => {
   const GetData=async()=>{
     {/* @ts-ignore */}
     const result: HISTORY[]=await db.select().from(AIOutput)
-    .where(eq(AIOutput.createdBy,user?.primaryEmailAddress?.emailAddress))
+    .where(eq(AIOutput.createdBy, user?.primaryEmailAddress?.emailAddress || ""))
+
 
     GetTotalUsage(result)
 }
 
 const IsUserSubscribe=async()=>{
     const result=await db.select().from(UserSub)
-    .where(eq(UserSub.email,user?.primaryEmailAddress?.emailAddress))
+    .where(eq(UserSub.email,user?.primaryEmailAddress?.emailAddress || ""))
 
     if(result){
       setUserSubscription(true);
@@ -72,8 +73,8 @@ const IsUserSubscribe=async()=>{
           <div className="bg-primary text-white p-3 rounded-lg">
             <h2 className="font-medium flex justify-center items-center">Credits</h2>
             <div className="h-2 bg-[#9981f9] w-full rounded-lg m-3">
-              <div
-                className="h-2 bg-white rounded-full"
+              {/* @ts-ignore */}
+              <div className="h-2 bg-white rounded-full"
                 style={{ 
                     width: (totalUsage/maxWords)*100+"%" 
                 }}

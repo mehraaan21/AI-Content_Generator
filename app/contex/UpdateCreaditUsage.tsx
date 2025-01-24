@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const UpdateCreditUsageContex=createContext<any>(0);
+export const UpdateCreditUsageContex=createContext<any>(null);

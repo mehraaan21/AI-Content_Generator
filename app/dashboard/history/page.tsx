@@ -1,7 +1,7 @@
 "use client";
 
 import dayjs from "dayjs";
-import Templates from "@/app/dashboard/(data)/Templates";
+import Templates from "@/app/(data)/Templates";
 import { Button } from "@/components/ui/button";
 import { db } from "@/utils/db";
 import { AIOutput } from "@/utils/schema";
@@ -10,6 +10,9 @@ import { desc, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
+
+
+
 export interface HISTORY {
   id: number;
   formData: string;
@@ -17,6 +20,7 @@ export interface HISTORY {
   templateSlug: string;
   createdBy: string;
   createdAt: string;
+  
 }
 
 function History() {
@@ -24,6 +28,7 @@ function History() {
   const [historyList, setHistoryList] = useState<HISTORY[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  
 
   const getTemplateName = (slug: string) => {
     const template = Templates.find((item) => item.slug === slug);
@@ -44,6 +49,7 @@ function History() {
           .from(AIOutput)
           .where(eq(AIOutput.createdBy, user.primaryEmailAddress.emailAddress))
           .orderBy(desc(AIOutput.id));
+          {/* @ts-ignore */}
         setHistoryList(response);
       } catch (error) {
         console.error("Error fetching history:", error);
